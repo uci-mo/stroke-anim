@@ -1,0 +1,18 @@
+.range-ispisanosti {
+  width: 100%;
+  padding: 0 20px;
+}
+.range-ispisanosti input {
+  width: 100%;
+}
+
+svg path {
+  transition: stroke-dashoffset 150ms;
+}
+
+body {
+  background-color: darkgray;
+}
+#spis {
+  fill: dodgerblue;
+}
