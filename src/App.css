@@ -1,3 +1,11 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  background-color: darkgray;
+}
+
 .range-ispisanosti {
   width: 100%;
   padding: 0 20px;
@@ -10,9 +18,6 @@ svg path {
   transition: stroke-dashoffset 150ms;
 }
 
-body {
-  background-color: darkgray;
-}
 #spis {
   fill: dodgerblue;
 }

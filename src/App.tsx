@@ -5,102 +5,73 @@ interface SlovoProps extends React.SVGProps<SVGPathElement> {
   ispisanost: number;
 }
 
+function useSlovo(ispisanost: number) {
+  const ref = useRef<SVGPathElement>(null);
+  const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
+  const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
+
+  useEffect(() => {
+    setDuzinaSlova(Math.round(ref.current?.getTotalLength() || 0) + 1);
+  }, []);
+
+  return {
+    ref,
+    strokeDasharray: `${duzinaSlova} ${duzinaSlova}`,
+    strokeDashoffset: duzinaSlova - relativnaIspisanost,
+  };
+}
+
 const slova = [
   ({ ispisanost, ...rest }: SlovoProps) => {
-    const ref = useRef<SVGPathElement>(null);
-    const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
-    const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
-
-    useEffect(() => {
-      setDuzinaSlova(Math.round(ref.current?.getTotalLength() || 0));
-    }, []);
-
+    const hookProps = useSlovo(ispisanost);
     return (
       <path
-        ref={ref}
-        strokeDasharray={`${duzinaSlova} ${duzinaSlova}`}
-        strokeDashoffset={duzinaSlova - relativnaIspisanost}
         {...rest}
+        {...hookProps}
         id="slovo-u"
         d="M182.867 208.799c-2.363-6.666-3.49-15.942-1.787-20.96 1.702-5.017 28.653-33.013 36.902-32.054 8.25.96 22.595 4.553 23.7 16.224 2.06 21.754-15.028 62.757-44.064 131.681-19.282 52.065 3.736 65.701 12.857 51.247 11.54-12.072 67.792-178.276 66.78-192.027-1.012-13.75-5.168-4.233-9.557 5.63-6.923 15.557-33.185 174.338-33.626 183.368-5.786 24.79-6.29 108.97-7.677 126.016-1.386 17.046-3.066 47.266-23.443 23.381-20.377-23.885-20.862-73.198-10.91-88.989 9.95-15.79 48.477-59.814 53.686-66.131 5.209-6.317 33.577-43.004 31.03-50.362"
       />
     );
   },
   ({ ispisanost, ...rest }: SlovoProps) => {
-    const ref = useRef<SVGPathElement>(null);
-    const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
-    const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
-
-    useEffect(() => {
-      setDuzinaSlova(Math.round(ref.current?.getTotalLength() || 0) + 1);
-    }, []);
-
+    const hookProps = useSlovo(ispisanost);
     return (
       <path
-        ref={ref}
-        strokeDasharray={`${duzinaSlova} ${duzinaSlova}`}
-        strokeDashoffset={duzinaSlova - relativnaIspisanost}
         {...rest}
+        {...hookProps}
         id="slovo-c"
         d="M276.758 295.823c-.77-2.222-29.006 58.474 10.396 21.755 9.096-8.613 11.676-13.524 17.22-22.62 0 0-26.163 49.937-29.05 68.364-1.7 8.539-4.376 25.638 5.487 28.546 9.863 2.908 24-14.923 24-14.923s13.842-18.078 21.255-36.596c4.08-10.19 11.011-32.361 7.988-34.222"
       />
     );
   },
   ({ ispisanost, ...rest }: SlovoProps) => {
-    const ref = useRef<SVGPathElement>(null);
-    const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
-    const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
-
-    useEffect(() => {
-      setDuzinaSlova(Math.round(ref.current?.getTotalLength() || 0));
-    }, []);
-
+    const hookProps = useSlovo(ispisanost);
     return (
       <path
-        ref={ref}
-        strokeDasharray={`${duzinaSlova} ${duzinaSlova}`}
-        strokeDashoffset={duzinaSlova - relativnaIspisanost}
         {...rest}
+        {...hookProps}
         id="slovo-i"
         d="M334.054 306.127c-5.373-3.307-19.364 45.678-17.132 55.555.56 1.988 3.526 27.74 19.86 6.216 16.332-21.524 22.636-39.144 28.35-55.17 5.159-14.468.743-14.26-.963-10.365-1.706 3.895-22.583 64.238-7.884 67.696 14.7 3.457 24.296-15.03 24.296-15.03"
       />
     );
   },
   ({ ispisanost, ...rest }: SlovoProps) => {
-    const ref = useRef<SVGPathElement>(null);
-    const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
-    const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
-
-    useEffect(() => {
-      setDuzinaSlova(Math.round(ref.current?.getTotalLength() || 0));
-    }, []);
-
+    const hookProps = useSlovo(ispisanost);
     return (
       <path
-        ref={ref}
-        strokeDasharray={`${duzinaSlova} ${duzinaSlova}`}
-        strokeDashoffset={duzinaSlova - relativnaIspisanost}
         {...rest}
+        {...hookProps}
         id="slovo-m"
         d="M439.479 312.168s.735 40.6 6.465 50.62c6.23 10.896 10.504-1.65 12.549-5.23 8.97-15.701 21.913-83.23 30.293-132.042 8.13-47.356 11.44-62.038 11.44-62.038s-14.9 155.468-14.598 161.042c.301 5.574-4.202 45.463.995 32.556 5.198-12.907 30.906-115.37 30.906-115.37l25.528-93.401s-21.093 107.003-25.736 161.228c-1.494 17.442-3.304 45.28-.66 52.512 2.686 7.344 20.016 18.403 20.016 18.403"
       />
     );
   },
   ({ ispisanost, ...rest }: SlovoProps) => {
-    const ref = useRef<SVGPathElement>(null);
-    const [duzinaSlova, setDuzinaSlova] = useState<number>(0);
-    const relativnaIspisanost = (duzinaSlova / 100) * ispisanost;
-
-    useEffect(() => {
-      setDuzinaSlova(ref.current?.getTotalLength() || 0);
-    }, []);
-
+    const hookProps = useSlovo(ispisanost);
     return (
       <path
-        ref={ref}
-        strokeDasharray={`${duzinaSlova} ${duzinaSlova}`}
-        strokeDashoffset={duzinaSlova - relativnaIspisanost}
         {...rest}
+        {...hookProps}
         id="slovo-o"
         d="M550.915 334.384s12.381-15.938 16.299 1.72c3.917 17.658-2.632 40.051-9.165 40.561-6.533.51-16.36 3.49-23.916-18.406-7.556-21.896 5.032-44.666 20.09-44.542 15.058.124 68.454-.56 68.454-.56"
       />
@@ -140,8 +111,8 @@ function App() {
             strokeWidth="11.5"
             strokeLinejoin="round"
           >
-            {slova.map((Slovo) => (
-              <Slovo ispisanost={ispisanost} />
+            {slova.map((Slovo, si) => (
+              <Slovo ispisanost={ispisanost} key={si} />
             ))}
           </g>
         </mask>
